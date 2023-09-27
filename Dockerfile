@@ -28,7 +28,9 @@ WORKDIR /home
 
 ADD cpp /home/cpp
 ADD notebooks /home/notebooks
-ADD python /home/python
+RUN mkdir -p /home/python
+ADD ./python/roots_finding.py /home/python/
+ADD ./python/roots_finding_leaky.py /home/python/
 
 RUN cd /home &&\
     mkdir -p local &&\

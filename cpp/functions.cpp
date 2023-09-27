@@ -353,10 +353,10 @@ void compound_propagator_matrix_c(std::complex<data_t> * M, const data_t f, cons
     if ((c.real() == a) || (c.real() == b)) c += EPS;
     std::complex<data_t> r=sqrt_mb((c/a)*(c/a)-1.0);
     std::complex<data_t> s=sqrt_mb((c/b)*(c/b)-1.0);
-    //r *= (data_t)sign(r.imag());
-    //r *= (data_t)sign(k.real()*r.real()-k.imag()*r.imag());
-    //s *= (data_t)sign(s.imag());
-    //s *= (data_t)sign(k.real()*s.real()-k.imag()*s.imag());
+    // r *= (data_t)sign(r.imag());
+    // r *= (data_t)sign(k.real()*r.real()-k.imag()*r.imag());
+    // s *= (data_t)sign(s.imag());
+    // s *= (data_t)sign(k.real()*s.real()-k.imag()*s.imag());
     std::complex<data_t> g=(b/c)*(b/c);
     std::complex<data_t> t=2.0-(c/b)*(c/b);
     std::complex<data_t> rs=r*s;
@@ -607,8 +607,8 @@ std::complex<data_t> halfspace_solid_halfspace_leaky(const data_t f, const std::
 
     // Field matrix (Q matrix) for the top half space
     std::vector<std::complex<data_t> > Q (36);
-    compound_field_matrix_c(Q.data(),f, k, a[0], b[0], rho[0], 0);
-    // compound_field_matrix(Q.data(),f, k.real(), a[0], b[0], rho[0], 0);
+    // compound_field_matrix_c(Q.data(),f, k, a[0], b[0], rho[0], 0);
+    compound_field_matrix(Q.data(),f, k.real(), a[0], b[0], rho[0], 0);
 
     std::complex<data_t> answer;
     // Adjacent two half spaces (Stoneley mode)
@@ -634,6 +634,7 @@ std::complex<data_t> halfspace_solid_halfspace_leaky(const data_t f, const std::
         for (int i=1; i<n-1; i++){
             // propagator matrix
             compound_propagator_matrix_c(T.data(), f, k, a[i], b[i], rho[i], d[i]);
+            // compound_propagator_matrix(T.data(), f, k.real(), a[i], b[i], rho[i], d[i]);
             Z += d[i];
 
             // v = T*v  v0 = Q(:,5)
@@ -647,8 +648,8 @@ std::complex<data_t> halfspace_solid_halfspace_leaky(const data_t f, const std::
             temp = v;
         }
         // Inverse field matrix at depth Z for the lower halfspace
-        compound_inv_field_matrix_c(T.data(), f, k, a[n-1], b[n-1], rho[n-1], Z);
-        // compound_inv_field_matrix(T.data(), f, k.real(), a[n-1], b[n-1], rho[n-1], Z);
+        // compound_inv_field_matrix_c(T.data(), f, k, a[n-1], b[n-1], rho[n-1], Z);
+        compound_inv_field_matrix(T.data(), f, k.real(), a[n-1], b[n-1], rho[n-1], Z);
 
         // invD(5,:)*v
         std::complex<data_t> temp2 (0,0);
@@ -662,7 +663,8 @@ std::complex<data_t> free_solid_halfspace_leaky(const data_t f, const std::compl
     
     // Field matrix (Q matrix) for the half space
     std::vector<std::complex<data_t> > Q (36);
-    compound_field_matrix_c(Q.data(),f, k, a[n-1], b[n-1], rho[n-1], 0);
+    // compound_field_matrix_c(Q.data(),f, k, a[n-1], b[n-1], rho[n-1], 0);
+    compound_field_matrix(Q.data(),f, k.real(), a[n-1], b[n-1], rho[n-1], 0);
 
     std::complex<data_t> answer;
     // Only half space

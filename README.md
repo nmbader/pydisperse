@@ -3,7 +3,7 @@ by [Milad Bader](mailto:nmbader@sep.stanford.edu)
 
 ## Docker
 
-Build the docker image (it should take about 20 seconds)
+Build the docker image (it should take about 3 minutes)
 ```
 docker build -f Dockerfile -t dispersion .
 ```
