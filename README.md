@@ -1,9 +1,19 @@
-# Build software for dispersion curve tracing
+# Software for dispersion curve tracing
 by [Milad Bader](mailto:nmbader@sep.stanford.edu)
 
-## Docker
+## Description
 
-Build the docker image (it should take about 3 minutes)
+Compute dispersion functions and trace dispersion curves in elastic isotropic layered media. Currently P-SV modal solutions are covered. This includes the following configurations:
+- Surface waves 
+- Lamb waves (known also as plate waves)
+- Guided waves in a perfect waveguide (infinitly stiff boundaries)
+- Guided waves in an embedded waveguide (waveguide sandwiched between two half spaces)
+
+In the last configuration, both normal and leaky modes are considered. For leaky modes, attenuation due to leakage into the half-spaces is also computed for each mode.
+
+## Installation with Docker
+
+Build the docker image (it should take about 2 minutes)
 ```
 docker build -f Dockerfile -t dispersion .
 ```

@@ -2,13 +2,8 @@ FROM ubuntu:18.04 as builder
 MAINTAINER nmbader@sep.stanford.edu
 RUN apt-get -y update
 RUN apt-get -y install build-essential
-RUN apt-get -y install wget git gcc g++ gfortran make cmake vim lsof
+RUN apt-get -y install gcc g++ gfortran vim lsof
 RUN apt-get -y install pkg-config
-RUN apt-get -y install libtbb-dev libboost-all-dev  libboost-dev
-RUN apt-get -y install libelf-dev libffi-dev
-RUN apt-get -y install libfftw3-3 libfftw3-dev libssl-dev
-RUN apt-get -y install flex libxaw7-dev
-RUN apt-get -y install x11-apps
 
 RUN apt-get update
 RUN apt-get -y  install python3-pip
@@ -28,9 +23,7 @@ WORKDIR /home
 
 ADD cpp /home/cpp
 ADD notebooks /home/notebooks
-RUN mkdir -p /home/python
-ADD ./python/roots_finding.py /home/python/
-ADD ./python/roots_finding_leaky.py /home/python/
+ADD python /home/python
 
 RUN cd /home &&\
     mkdir -p local &&\
