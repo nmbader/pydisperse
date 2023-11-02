@@ -11,6 +11,8 @@ Compute dispersion functions and trace dispersion curves in elastic isotropic la
 
 In the last configuration, both normal and leaky modes are considered. For leaky modes, attenuation due to leakage into the half-spaces is also computed for each mode.
 
+Check the pdf documents for more details about the method and algebraic derivation.
+
 ## Installation with Docker
 
 Build the docker image (it should take about 2 minutes)
